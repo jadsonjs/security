@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://maven.springframework.org/release"}
+    maven { url "https://repo.spring.io/plugins-release/" }
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+
+    /**
+     * Takes third-party HTML and produces HTML that is safe to embed in your web application. Fast and easy to configure.
+     */
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20200713.1'
+
+
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

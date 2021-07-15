@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>XSS Injection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+</head>
+
+<body>
+    <!-- This div shows HTML and are vulnerable to XSS injection -->
+    <div th:utext="${foo.input}"> </div>
+
+    <!-- THis div sanitize the string and are not vulnerable to XSS injection -->
+    <div th:text="${foo.input}"> </div>
+</body>
+
+</html>

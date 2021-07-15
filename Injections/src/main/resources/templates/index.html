@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>XSS Injection</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+    </head>
+
+    <body>
+        <form action="#" th:action="@{/submit}" th:object="${foo}" method="post">
+            <textarea th:field="*{input}" rows="4" cols="60" />
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>
