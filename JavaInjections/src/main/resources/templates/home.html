@@ -8,11 +8,16 @@
 </head>
 
 <body>
+    <h1> Text send by the user: </h1>
+
     <!-- This div shows HTML and are vulnerable to XSS injection -->
-    <div th:utext="${foo.input}"> </div>
+    <div th:utext="${data.userInput}"> </div>
 
     <!-- THis div sanitize the string and are not vulnerable to XSS injection -->
-    <div th:text="${foo.input}"> </div>
+    <div th:text="${data.userInput}"> </div>
+
+    <div style="font-style: italic; padding: 20px;"> If a Javascript code execute here, your application is not safe!</div>
+
 </body>
 
 </html>

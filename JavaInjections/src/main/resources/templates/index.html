@@ -8,11 +8,12 @@
     </head>
 
     <body>
-        <form action="#" th:action="@{/submit}" th:object="${foo}" method="post">
-            <textarea th:field="*{input}" rows="4" cols="60" />
-            <input type="submit" />
+        <form action="#" th:action="@{/submit}" th:object="${data}" method="post">
+            <textarea th:field="*{userInput}" rows="4" cols="60" />
+            <button type="submit" name="action" value="Send">Send</button>
+            <button type="submit" name="action" value="Send" th:formaction="@{/sanitaze}"> Send and Sanitaze</button>
         </form>
-        <div style="font-style: italic;"> Insert a Javascript code here like: &lt;script&gt; alert(&#39;Hi&#39;) &lt;/script&gt; </div>
+        <div style="font-style: italic;"> Insert a Javascript code here like: &lt;b&gt; My code &lt;/b&gt &lt;script&gt; alert(&#39;Hi&#39;) &lt;/script&gt; </div>
     </body>
 
 </html>
