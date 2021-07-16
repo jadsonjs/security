@@ -2,9 +2,10 @@ plugins {
     id 'java'
 }
 
+archivesBaseName = 'cryptography'
 group 'br.com.jadson'
 version '1.0'
-jar.baseName = 'cryptography'
+
 
 repositories {
     mavenCentral()
