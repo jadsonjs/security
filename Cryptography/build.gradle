@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'br.com.jadson'
+version '1.0'
+jar.baseName = 'cryptography'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    /*
+     * The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms.
+     * This jar contains JCE provider and lightweight API for the Bouncy Castle Cryptography APIs for JDK 1.5 and up.
+     */
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.65.01'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
