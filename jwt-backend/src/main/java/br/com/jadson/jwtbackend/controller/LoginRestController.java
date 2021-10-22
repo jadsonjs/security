@@ -27,7 +27,7 @@ public class LoginRestController {
     @Autowired
     JwtManager jwt;
 
-    @PostMapping(path = "/enter", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/signin", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object[] login(@RequestBody AppUser user){
 
         Authentication authentication = authenticationManager.authenticate(

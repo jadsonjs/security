@@ -35,20 +35,23 @@ public class SecurityInterceptorFilter implements HandlerInterceptor {
 
         if( ! isOptionsRequest(request) ) {
 
-            ObjectMapper mapper = new ObjectMapper().registerModule(new ParameterNamesModule()).registerModule(new Jdk8Module()).registerModule(new JavaTimeModule());
+            if( ! isPublicRequest(request) ) {
 
-            String headerUser = request.getHeader("user");
-            String headerAuthorization = request.getHeader("Authorization");
+                ObjectMapper mapper = new ObjectMapper().registerModule(new ParameterNamesModule()).registerModule(new Jdk8Module()).registerModule(new JavaTimeModule());
 
-            AppUser user =  mapper.readValue(headerUser, AppUser.class);
-            String token = headerAuthorization.substring(7);  // Authorization Bearer XXXXXXXXXXXXXXXXXXXX
+                String headerUser = request.getHeader("user");
+                String headerAuthorization = request.getHeader("Authorization");
 
-            if (user == null || jwt.validate(token)) {
-                return unauthorized(response, "Expired access");
+                AppUser user = mapper.readValue(headerUser, AppUser.class);
+                String token = headerAuthorization.substring(7);  // Authorization Bearer XXXXXXXXXXXXXXXXXXXX
+
+                if (user == null || jwt.validate(token)) {
+                    return unauthorized(response, "Expired access");
+                }
+
+                restoreApplicationContext(user, request);
+                saveUserInSession(user, request);
             }
-
-            restoreApplicationContext(user, request);
-            saveUserInSession(user, request);
 
         }
 
@@ -60,6 +63,15 @@ public class SecurityInterceptorFilter implements HandlerInterceptor {
     private boolean isOptionsRequest(HttpServletRequest request) {
         return request.getMethod().equals("OPTIONS");
     }
+
+    
+    private boolean isPublicRequest(HttpServletRequest request) {
+        if( request.getRequestURI().contains("public") || request.getRequestURI().contains("login")  ){
+            return true;
+        }
+        return false;
+    }
+
 
 
 
