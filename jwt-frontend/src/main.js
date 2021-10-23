@@ -17,8 +17,8 @@ const store = new Vuex.Store({
     token: '',
   },
   getters:{
-    getUser(state) { return state.user },
-    getToken(state) { return state.token },
+    user(state) { return state.user },
+    token(state) { return state.token },
   },
   mutations: {
     setUser (state, user) { state.user = user },
@@ -28,14 +28,17 @@ const store = new Vuex.Store({
 
 // routers
 
-import Hello from '@/components/HelloWorld.vue';
+import Home from '@/components/Home.vue';
+import Login from '@/components/Login.vue';
 
 const routes = [
-  { path: '/hello', component: Hello },
+  { path: '/home', component: Home },
+  { path: '/login', component: Login },
 ]
 
 const router = new VueRouter({
-  routes
+  mode: 'history',
+  routes : routes,
 })
 
 Vue.config.productionTip = false

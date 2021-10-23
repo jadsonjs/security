@@ -45,7 +45,7 @@ public class SecurityInterceptorFilter implements HandlerInterceptor {
                 AppUser user = mapper.readValue(headerUser, AppUser.class);
                 String token = headerAuthorization.substring(7);  // Authorization Bearer XXXXXXXXXXXXXXXXXXXX
 
-                if (user == null || jwt.validate(token)) {
+                if (user == null || ! jwt.validate(token)) {
                     return unauthorized(response, "Expired access");
                 }
 
