@@ -33,11 +33,9 @@ public class LoginRestController {
 
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-        String token = jwt.generate(authentication);
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return new Object[]{user , token};
+        return new Object[]{userDetails.getAppUser() , jwt.generate(userDetails)};
 
     }
 }
+
+

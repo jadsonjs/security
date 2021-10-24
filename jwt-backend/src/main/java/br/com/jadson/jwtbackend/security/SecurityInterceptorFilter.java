@@ -78,10 +78,13 @@ public class SecurityInterceptorFilter implements HandlerInterceptor {
     public void restoreApplicationContext(AppUser user, HttpServletRequest request) {
 
         List< GrantedAuthority > authorities = customUserDetailsService.getUserAuthority(user.roles);
-        UserDetails userDetails =  new CustomUserDetails(new org.springframework.security.core.userdetails.User( user.login, user.password,
+        UserDetails userDetails =  new CustomUserDetails(
+                new org.springframework.security.core.userdetails.User(
+                user.login, user.password,
                 user.active, true, true, true, authorities), user);
 
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);

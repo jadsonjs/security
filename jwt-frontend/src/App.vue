@@ -16,13 +16,7 @@ export default {
 
     computed:{
       user(){ return this.$store.state.user },
-    }, 
-
-    // computed: {
-    //     usuarioLogado(){   
-    //       return this.$store.state.login.usuarioLogado   
-    //     },
-    //   },
+    },
 
     beforeMount(){
       if(! this.user ||  Object.keys(this.user).length === 0 )

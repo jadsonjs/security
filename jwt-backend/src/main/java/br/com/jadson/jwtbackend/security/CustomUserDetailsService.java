@@ -40,7 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> r = new HashSet<>();
         if(roles != null) {
             for (AppRole p : roles) {
-                r.add(new SimpleGrantedAuthority(p.name()));
+                r.add(new SimpleGrantedAuthority(p.getName()));
             }
         }
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>(r);

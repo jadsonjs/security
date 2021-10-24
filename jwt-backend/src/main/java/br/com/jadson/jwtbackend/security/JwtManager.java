@@ -19,10 +19,7 @@ public class JwtManager {
 
     private int expirationTime = 86400000;
 
-    public String generate(Authentication authentication) {
-
-        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-
+    public String generate(CustomUserDetails userPrincipal) {
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
@@ -30,7 +27,6 @@ public class JwtManager {
                 .signWith(getJwtKey(), SignatureAlgorithm.HS512)
                 .compact();
     }
-
 
     public boolean validate(String token) {
         try {

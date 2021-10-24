@@ -37,6 +37,7 @@
     },
 
     beforeMount(){
+
         axios.get('/internal',
         {
           headers: {
@@ -55,6 +56,7 @@
             }
           )
       },
+      
   }
 </script>
 
