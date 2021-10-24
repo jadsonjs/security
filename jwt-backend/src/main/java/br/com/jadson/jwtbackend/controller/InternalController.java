@@ -15,7 +15,7 @@ public class InternalController {
 
     @PreAuthorize("hasAnyRole('ADMIN', 'COMMON')")
     @GetMapping
-    public ResponseEntity<String> ping() {
+    public ResponseEntity<String> print() {
         return new ResponseEntity<>("I AM PROJECTED BY THE TOKEN", HttpStatus.OK);
     }
 }
